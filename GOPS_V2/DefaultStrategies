@@ -1,0 +1,84 @@
+/* --------------------------------------------------------------------------------
+    Disclaimer: these are very simple strategies that I created at the beginning.
+    They are pretty bad, and very simple, but can start as a baseline to start from,
+    and can serve as useful prebuilt strategies to test your own group's strategy on
+----------------------------------------------------------------------------------- */
+
+// Note: it is possible to put all the files into an online C++ compiler like onlineGDB, however
+// there is a very weird glitch where you need to rename this file to DefaultStrategies, omitting
+// the .cpp at the end, and editing main.cpp to match the name of the file. I'm not sure why this
+// happens, but if these steps are followed then it should work correctly.
+
+#include <iostream>
+
+int randArr[13] = {0}; // dont mind this
+
+using namespace std;
+
+void randomizeArray(){
+    for(int i = 1; i < 14; i++){
+        randArr[i] = i;
+    }
+
+    int j, temp;
+    for(int i = 1; i < 14; i++){
+        randArr[i] = i;
+    }
+
+    for(int i = 1; i < 14; i++){
+        j = rand() % 13 + 1;
+        temp = randArr[i];
+        randArr[i] = randArr[j];
+        randArr[j] = temp;
+    }
+} // function shuffling for an array of numbers from 1-13, this is for a standard strategy
+
+void initStrats(){
+
+    randomizeArray();
+
+} // my code is so embarassing
+
+int human(int a[], int b[], int val, int pot){
+
+    int bid;
+
+    cout << "Pot is: " << pot << endl;
+    cout << "Your cards are: ";
+    for(int i = 1; i < 14; i++){
+        if(a[i] != 0)
+            cout << i << " ";
+    }
+
+    cout << "\nYour Opponent's cards are: ";
+    
+    for(int i = 1; i < 14; i++){
+        if(b[i] != 0)
+            cout << i << " ";
+    }
+
+    cout << "\nEnter your bid: ";
+    
+    cin >> bid;
+    cout << endl;
+    return bid;
+} // a way for a human to play the game, not reccomended for more than 1 repetition
+
+const int N = 1; // parameter for plusN strategy
+
+int plusN(int a[], int b[], int val, int pot){
+    int k = (((val + N) % 13) == 0) ? 13 : (val + N) % 13;
+    return k;
+} /* ----------------------------------------------------------------------------------------
+This strategy works as follows: we see the card that is dealt, and play N more than that.
+If this number is greater than 13, then we take it mod 13. If N=0, its as if the player
+bids the same card as what was dealt 
+--------------------------------------------------------------------------------------------- */
+
+int randomSequence(int a[], int b[], int val, int pot){
+    return randArr[val];
+} // essentially we randomly pick an available card each time
+
+int reverseBid(int a[], int b[], int val, int pot){
+    return 14 - val;
+} // based on the bid, we do bid the 'opposite' card, 1 becomes 13, 2 becomes 12, etc.
