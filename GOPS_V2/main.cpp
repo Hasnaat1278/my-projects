@@ -3,15 +3,15 @@
 #include <ctime>
 #include <iomanip>
 #include <stdexcept>
-#include "Player.hpp" // vscode is dumb and wants me to write .cpp, so if this doesn't work try this fix
+#include "Player.hpp" 
 #include "DefaultStrategies" // some premade strategies to test your function against
-// header stuff
+// header
 
 const unsigned reps = 1000; // number of games to play
 
 using namespace std;
 
-void shuffle(int[]); // dont worry about this now, all will be revealed
+void shuffle(int[]); 
 void debugGame(int, int, int);
 
 void printSequence(int arr[]){
@@ -86,7 +86,7 @@ int main(){
         // this block of 3 lines is also optional and only used for displaying the game
 
 
-        trials--; // decrement goes BRRRR
+        trials--; 
     }
 
     cout << endl;
@@ -101,7 +101,7 @@ int main(){
     turns, in this case the game ends as a tie and nobody wins the last few cards 
      ------------------------------------------------------------------------------------------*/
 
-    return 0; // we are FINALLY done
+    return 0; 
 }
 
 void shuffle(int arr[]){
@@ -118,4 +118,5 @@ void debugGame(int pot, int bid1, int bid2){
 cout << "Pot:" << setw(3) << pot <<
 "  Player 1 Bid:" << setw(3) << bid1 <<
 "  Player 2 Bid:" << setw(3) << bid2 << endl;
+
 } // this outputs more information in this middle of rounds for debugging strategies
